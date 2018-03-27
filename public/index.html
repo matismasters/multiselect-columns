@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Multiselect Columns View</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ </head>
+ <body>
+  <multiselect-columns-view
+    name_attribute="label_es"
+    select_all_message="Select All"
+    debug="false"
+    json_columns_array=""
+    column_width="200"
+  ></multiselect-columns-view>
+
+  <!-- Include the Riot.js compiler -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/3.6.1/riot.min.js"></script>
+
+  <!-- Include shared selectedNodesStorage class -->
+  <script src="/js/selected-nodes-storage.js"></script>
+
+  <!-- JSON DATA -->
+  <script src="/js/json_columns_array.js"></script>
+
+  <!-- Include observer class -->
+  <script src="/js/multiselect-columns-observer.js"></script>
+
+  <!-- Include the tag -->
+  <script src="/js/multiselect-columns-view.js"></script>
+
+  <!-- Mount the tag -->
+  <script>
+    riot.mount('*', { observer: new MultiselectColumnsObserver()})
+  </script>
+</html>
