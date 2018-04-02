@@ -35,6 +35,7 @@
   </ul>
 
   <script>
+    this.instanceName = this.opts.instance_name || '-columns';
     this.column_width = parseInt(this.opts.column_width) || 200;
     this.rootChildren = JSON.parse(
       this.opts.json_columns_array || 
@@ -92,7 +93,7 @@
         this.storage.removeSelectedNode(e.item.id);
       }
 
-      this.observer.trigger('selected-update', { 
+      this.observer.trigger('selected-update' + this.instanceName, { 
         nodes: this.storage.selectedNodes(), 
         ids: this.storage.selectedNodesIds()
       });

@@ -1,4 +1,5 @@
 riot.tag2('multiselect-columns-view', '<ul class="root"> <li class="floating-option"> <label for="{this.root.localName}-all"> <input id="{this.root.localName + \'-all\'}" name="{this.root.localName + \'-all\'}" type="checkbox" onclick="{selectUnselectAll}"> {select_all_message} </label> </li> <li class="column" each="{column in columns}"> <ul> <li each="{column.children}"> <label for="{name}" onclick="{showHideChildren}"> <input id="{this.root.localName + id}" name="{this.root.localName + id}" type="checkbox" onclick="{selectNode}"> {this[name_attribute]} </label> </li> </li> </li> </ul>', 'multiselect-columns-view ul.root,[data-is="multiselect-columns-view"] ul.root{ width: 100%; padding: 0; } multiselect-columns-view .column,[data-is="multiselect-columns-view"] .column{ display: inline-block; vertical-align: top; } multiselect-columns-view .column ul,[data-is="multiselect-columns-view"] .column ul{ padding: 0; width: 190px; } multiselect-columns-view .column ul li,[data-is="multiselect-columns-view"] .column ul li{ list-style: none; }', 'class="mtv-container"', function(opts) {
+    this.instanceName = this.opts.instance_name || '-columns'
     this.column_width = parseInt(this.opts.column_width) || 200;
     this.rootChildren = JSON.parse(
       this.opts.json_columns_array ||
@@ -56,7 +57,7 @@ riot.tag2('multiselect-columns-view', '<ul class="root"> <li class="floating-opt
         this.storage.removeSelectedNode(e.item.id);
       }
 
-      this.observer.trigger('selected-update', {
+      this.observer.trigger('selected-update' + this.instanceName, {
         nodes: this.storage.selectedNodes(),
         ids: this.storage.selectedNodesIds()
       });
